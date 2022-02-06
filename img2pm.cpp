@@ -40,7 +40,8 @@ struct tFile {
 };
 
 tFile files[MAX_INFILES]; // input files
-char* fileNameOut;       // output file
+char* fileNameOut;        // output file
+char* fileBase = "0x010000"; // base address
 bool bHasSprites;
 bool bHasTiles;
 int  nShadesTiles;
@@ -324,10 +325,11 @@ int main(int argc, char* argv[])
   AppName[i]='\0';
 
   if(argc<3) {
-    printf("Usage: %s -o [file] [-g files] [-bw files]\n", AppName);
+    printf("Usage: %s -o [file] [-g files] [-bw files] [-b address]\n", AppName);
     printf("Commands:\n");
     printf("-o file       Output file\n");
     printf("              Extension .h outputs header file\n");
+    printf("-b address    Base address to use (Default: 0x010000)\n"); // Taken from https://github.com/logicplace/pokemini-img2c
     printf("-s2 files     Convert 2 shade sprites (1 frame)\n");
     printf("-s3 files     Convert 3 shade sprites (2 frames)\n");
     printf("-t2 files     Convert 2 shade tiles (1 frame)\n");
@@ -356,6 +358,10 @@ int main(int argc, char* argv[])
       else
         bHeader = false;
       fileNameOut = argv[i];
+
+    } else if(strcmp(argv[i],"-b")==0) {
+      i++;
+      fileBase = argv[i];
 
     } else if(argv[i][0] == '-') {
       j = argv[i][2]-'0'; // get number of shades
