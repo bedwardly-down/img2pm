@@ -308,7 +308,8 @@ int main(int argc, char* argv[])
   unsigned char *pd;
   bool btmp;
   
-  printf("img2pm V1.0 by Lupin\n");
+  printf("img2pm V1.1 by bedwardly-down\n");
+  printf("updated from v1.0 by Lupin\n");
   printf("http://lupin.shizzle.it\n");
   printf("-----------------------\n\n");
 
