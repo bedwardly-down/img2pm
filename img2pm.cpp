@@ -33,6 +33,7 @@ bool  bHeader;
 struct tFile {
 	char* fileName;
 	char* fileNameSym;
+  char* base;
 	int length;
 	int shades;
   bool sprite;
@@ -392,6 +393,7 @@ int main(int argc, char* argv[])
       i++;
       while(argv[i]) {
         if(argv[i][0] != '-') {
+          files[nFile].base = fileBase;
           files[nFile].sprite = btmp;
           files[nFile].shades = j;
           files[nFile].fileName = argv[i];
@@ -429,6 +431,8 @@ int main(int argc, char* argv[])
   fileOut = fopen(fileNameOut, "wb");
   if(bHeader) {
     // Output header file
+    fprintf(fileOut,"#include \"pm.h\"\n");
+    fprintf(fileOut,"#include <stdint.h>\n\n");
     if(bHasSprites) {
       fprintf(fileOut,"// Sprites\n");
       nFile = 0; i=0;
@@ -462,7 +466,7 @@ int main(int argc, char* argv[])
     
     if(bHasSprites) {
       // output sprite data
-      fprintf(fileOut,"const unsigned char __align64 %s%s[] = {\n", formatFileName(fileNameOut, false), bHasTiles?"_spr":"");
+      fprintf(fileOut,"const uint8_t _rom %s%s[] _at(%s) = {\n", formatFileName(fileNameOut, false), bHasTiles?"_spr":"", fileBase);
       // cycle through all files and output the converted sprite data
       nFile = 0;
       while(files[nFile].fileName!=NULL) {
@@ -487,7 +491,7 @@ int main(int argc, char* argv[])
     if(bHasTiles) {
       // output tile data
       for(i=0;i<(nShadesTiles-1);i++) {
-        fprintf(fileOut,"const unsigned char __align8 %s%s_frame%d[] = {\n", formatFileName(fileNameOut, false), bHasSprites?"_tile":"",i);
+        fprintf(fileOut,"const uint8_t _rom %s%s_frame%d[] _at(%s) = {\n", formatFileName(fileNameOut, false), bHasSprites?"_tile":"",i,fileBase);
         // cycle through all files and output the converted tile data
         nFile = 0;
         while(files[nFile].fileName!=NULL) {
