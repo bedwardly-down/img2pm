@@ -2,6 +2,10 @@
 // Libraries required: DevIL.lib ILU.lib ILUT.lib
 // download at: http://openil.sourceforge.net/
 
+// Update 02-06-2022 (Brandon D <bedwardly-down>
+// download latest source for compatibility with newer gcc/visual studio: https://github.com/DentonW/DevIL
+// compile as per Readme.cmake
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #define MAX_INFILES     32
@@ -9,8 +13,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <IL\il.h>
-#include <IL\ilu.h>
+#include <IL/il.h>
+#include <IL/ilu.h>
 #include <ctype.h>
 
 // Indexes in datTile array
