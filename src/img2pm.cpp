@@ -1,5 +1,5 @@
 // img2pm
-// Libraries required: DevIL.lib ILU.lib ILUT.lib
+// Libraries required for Windows only: DevIL.lib ILU.lib ILUT.lib
 // download at: http://openil.sourceforge.net/
 
 // Update 02-06-2022 (Brandon D <bedwardly-down>
@@ -7,8 +7,6 @@
 // compile as per Readme.cmake
 
 #define _CRT_SECURE_NO_WARNINGS
-
-#define MAX_INFILES     32
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -70,7 +68,7 @@ int main(int argc, char* argv[])
   unsigned char *pd;
   bool btmp;
   
-  printf("img2pm V1.1 by bedwardly-down\n");
+  printf("img2pm V1.2 by bedwardly-down\n");
   printf("updated from v1.0 by Lupin\n");
   printf("http://lupin.shizzle.it\n");
   printf("-----------------------\n\n");
