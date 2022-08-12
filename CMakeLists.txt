@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8)
+
+project(img2pm)
+set(CMAKE_BINARY_DIR ./bin)
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+find_package(DevIL)
+include_directories("${PROJECT_SOURCE_DIR}/src")
+add_executable(img2pm ${PROJECT_SOURCE_DIR}/src/conversion.cpp ${PROJECT_SOURCE_DIR}/src/img2pm.cpp)
+target_link_libraries(img2pm IL ILU)
