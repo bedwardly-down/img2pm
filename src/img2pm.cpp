@@ -18,12 +18,16 @@
 #include "conversion.hpp"
 
 bool  bHeader;
+int   nSprite;
 
 char* fileNameOut;        // output file
 char* fileBase = "0x010000"; // base address
 bool bHasSprites;
 bool bHasTiles;
 int  nShadesTiles;
+Conversion conversion;
+
+tFile files[MAX_INFILES]; // input files
 
 char* formatFileName(char *fileName, bool toUpper)
 {
@@ -174,13 +178,12 @@ int main(int argc, char* argv[])
   /* Convert image files */
   ilInit(); /* Initialization of DevIL */
   nFile = 0;
-  //nSprite = 0;
   while(files[nFile].fileName!=NULL) {
     printf("Converting %s to %d shades %s...\n", files[nFile].fileName, files[nFile].shades, files[nFile].sprite?"sprites":"tiles");
     if(files[nFile].sprite)
-      btmp = ConvertSprites(&files[nFile]);
+      btmp = conversion.ConvertSprites(&files[nFile]);
     else
-      btmp = ConvertTiles(&files[nFile]);
+      btmp = conversion.ConvertTiles(&files[nFile]);
     
     if(btmp == false) return -1;
     nFile++; // next file

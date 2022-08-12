@@ -2,7 +2,7 @@
 
 // Builds an 8x8 tile from source image
 // This will build the draw and mask information for the tile
-void buildTile(ILubyte *px, unsigned char* datDraw, unsigned char* datMask, ILint width, int abs_x, int abs_y, int nshades, int frame)
+void Conversion::buildTile(ILubyte *px, unsigned char* datDraw, unsigned char* datMask, ILint width, int abs_x, int abs_y, int nshades, int frame)
 {
   int x,y;
   int grey;
@@ -25,7 +25,7 @@ void buildTile(ILubyte *px, unsigned char* datDraw, unsigned char* datMask, ILin
     }
 }
 
-bool ConvertSprites(tFile *inFile)
+bool Conversion::ConvertSprites(tFile *inFile)
 {
   ILuint ImageID;
   ILboolean success;
@@ -127,7 +127,7 @@ bool ConvertSprites(tFile *inFile)
   return true;
 }
 
-bool ConvertTiles(tFile *inFile)
+bool Conversion::ConvertTiles(tFile *inFile)
 {
   ILuint ImageID;
   ILboolean success;

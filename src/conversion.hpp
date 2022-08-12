@@ -28,13 +28,18 @@ struct tFile {
 	unsigned char* data;
 };
 
-int   nSprite;
-tFile files[MAX_INFILES]; // input files
+class Conversion {
+	private:
+		int   nSprite;
+		tFile files[MAX_INFILES]; // input files
 
-void buildTile(ILubyte *px, unsigned char* datDraw, unsigned char* datMask, ILint width, int abs_x, int abs_y, int nshades, int frame);
+	public:
+		void buildTile(ILubyte *px, unsigned char* datDraw, unsigned char* datMask, ILint width, int abs_x, int abs_y, int nshades, int frame);
 
-bool ConvertSprites(tFile *inFile);
+		bool ConvertSprites(tFile *inFile);
 
-bool ConvertTiles(tFile *inFile);
+		bool ConvertTiles(tFile *inFile);
+
+};
 
 #endif
