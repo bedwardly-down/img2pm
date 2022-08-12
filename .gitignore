@@ -1,3 +1,8 @@
 **/img2pm.exe
 **/img2pm
 **/.vscode/
+**/*.o
+**/*.dll
+**/*.obj
+**/*.la
+**/*.so
