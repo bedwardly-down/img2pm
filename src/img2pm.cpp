@@ -17,6 +17,8 @@
 #include <IL/ilu.h>
 #include <ctype.h>
 
+#include "conversion.hpp"
+
 // Indexes in datTile array
 #define MASK_TL 0
 #define MASK_BL 1
@@ -30,17 +32,6 @@
 int   nSprite;
 bool  bHeader;
 
-struct tFile {
-	char* fileName;
-	char* fileNameSym;
-  char* base;
-	int length;
-	int shades;
-  bool sprite;
-	unsigned char* data;
-};
-
-tFile files[MAX_INFILES]; // input files
 char* fileNameOut;        // output file
 char* fileBase = "0x010000"; // base address
 bool bHasSprites;
